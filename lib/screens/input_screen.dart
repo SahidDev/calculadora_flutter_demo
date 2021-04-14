@@ -5,6 +5,9 @@ import 'package:calculadora/utilities/components/reusable_card.dart';
 import 'package:calculadora/utilities/constants.dart';
 import 'package:calculadora/utilities/components/bottom_button.dart';
 import 'package:calculadora/utilities/components/round_icon_button.dart';
+import 'package:calculadora/utilities/functions/calculator_brain.dart';
+import 'package:calculadora/screens/results_screen.dart';
+
 
 enum Gender {
   male,
@@ -58,8 +61,6 @@ class _InputScreenState extends State<InputScreen> {
               ),
               Expanded(
                 child: ReusableCard(
-                  //height: screenHeight * 0.01,
-                  //width: screenWidth * 0.08,
                   onPress: () {
                     setState(() {
                       selectedGender = Gender.female;
@@ -234,6 +235,19 @@ class _InputScreenState extends State<InputScreen> {
           BottomButton(
             buttonTitle: 'CALCULAR',
             onTap: () {
+              CalculatorBrain calc =
+              CalculatorBrain(height: height, weight: weight);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsScreen(
+                    bmiResult: calc.calculateBMI(),
+                    resultText: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                  ),
+                ),
+              );
             },
           ),
         ],
