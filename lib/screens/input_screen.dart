@@ -18,17 +18,17 @@ class InputScreen extends StatefulWidget {
   _InputScreenState createState() => _InputScreenState();
 }
 
-
 class _InputScreenState extends State<InputScreen> {
-    Gender selectedGender;
-    int height = 180;
-    int weight = 60;
-    int age = 20;
+  Gender selectedGender = Gender.male;
+  int height = 180;
+  int weight = 60;
+  int age = 20;
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData deviceInfo = MediaQuery.of(context);
     final double screenWidth = deviceInfo.size.width;
-    final double screenHeight = deviceInfo.size.height;  
+    final double screenHeight = deviceInfo.size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -41,16 +41,16 @@ class _InputScreenState extends State<InputScreen> {
               child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-            Expanded(
+              Expanded(
                 child: ReusableCard(
-                  //height: screenHeight * 0.01,
-                  //width: screenWidth * 0.08,
                   onPress: () {
                     setState(() {
                       selectedGender = Gender.male;
                     });
                   },
-                  colour: selectedGender == Gender.male ? kActiveCardColour : kInactiveCardColour,
+                  colour: selectedGender == Gender.male
+                      ? kActiveCardColour
+                      : kInactiveCardColour,
                   cardChild: IconContent(
                     size: screenHeight * 0.1,
                     icon: FontAwesomeIcons.mars,
@@ -60,14 +60,16 @@ class _InputScreenState extends State<InputScreen> {
               ),
               Expanded(
                 child: ReusableCard(
-                    //height: screenHeight * 0.01,
-                    //width: screenWidth * 0.08,
+                  //height: screenHeight * 0.01,
+                  //width: screenWidth * 0.08,
                   onPress: () {
                     setState(() {
                       selectedGender = Gender.female;
                     });
                   },
-                  colour: selectedGender == Gender.female ? kActiveCardColour : kInactiveCardColour,
+                  colour: selectedGender == Gender.female
+                      ? kActiveCardColour
+                      : kInactiveCardColour,
                   cardChild: IconContent(
                     size: screenHeight * 0.1,
                     icon: FontAwesomeIcons.venus,
@@ -79,8 +81,8 @@ class _InputScreenState extends State<InputScreen> {
           )),
           Expanded(
             child: ReusableCard(
-                //height: screenHeight * 0.02,
-                //width: screenWidth * 0.07,
+              //height: screenHeight * 0.02,
+              //width: screenWidth * 0.07,
               colour: kActiveCardColour,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -110,8 +112,10 @@ class _InputScreenState extends State<InputScreen> {
                       activeTrackColor: Colors.white,
                       thumbColor: Color(0xFFEB1555),
                       overlayColor: Color(0x29EB1555),
-                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                      overlayShape: RoundSliderOverlayShape(overlayRadius: 10.0),
+                      thumbShape:
+                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      overlayShape:
+                          RoundSliderOverlayShape(overlayRadius: 10.0),
                     ),
                     child: Slider(
                       value: height.toDouble(),
@@ -133,8 +137,8 @@ class _InputScreenState extends State<InputScreen> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                     // height: screenHeight * 0.03,
-                     // width: screenWidth * 0.07,
+                    // height: screenHeight * 0.03,
+                    // width: screenWidth * 0.07,
                     colour: kActiveCardColour,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -183,7 +187,7 @@ class _InputScreenState extends State<InputScreen> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                     // height: screenHeight * 0.03,
+                    // height: screenHeight * 0.03,
                     //width: screenWidth * 0.07,
                     colour: kActiveCardColour,
                     cardChild: Column(
@@ -235,7 +239,8 @@ class _InputScreenState extends State<InputScreen> {
           BottomButton(
             buttonTitle: 'CALCULAR',
             onTap: () {
-              CalculatorBrain calc = CalculatorBrain(height: height, weight: weight);
+              CalculatorBrain calc =
+                  CalculatorBrain(height: height, weight: weight);
 
               Navigator.push(
                 context,

@@ -7,10 +7,8 @@ class ReusableCard extends StatelessWidget {
   final Widget cardChild;
   final Function onPress;
 
-
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
       onTap: onPress,
       child: Container(
